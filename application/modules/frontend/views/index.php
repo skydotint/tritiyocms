@@ -1,166 +1,130 @@
-<div class="row">
-    <?php //owndebugger($blocks); ?>
-    <div class="banner">
-        <?php $this->load->view('slider'); ?>
-    </div>
-    <!--/.banner style1-->
-
-
-
-    <div class="container main-container">
-        <div class="morePost row featuredPostContainer style2 globalPaddingTop">
-            <div class="container">
-                        
-                  <?php 
-                  $temp = $products;
-                  $products = $stricky_products; ?>
-                            <h3>Exclusive Products</h3>
-                            <div class="row xsResponse">
-                                <?php
-                                foreach ($products as $product) {
-                                    $product['images'] = $this->product_model->get_product_imgs($product['id']);
-                                    $product['url'] = base_url('product/' . $product['id'] . '-' . url_title($product['name'], '-', TRUE));
-                                    ?>
-                                    <div class="item itemauto  col-lg-3 col-md-3 col-sm-6 col-xs-6">
-                                        <div class="product">
-                                            <div class="imageHover">
-                                                <a href="<?php echo $product['url']; ?>">
-                                                    <?php if (!empty($product['images'])) { ?>
-                                                        <img src="<?php echo base_url($product['images'][0]['url']); ?>" alt="img" class="img-responsive primaryImage">
-                                                        <img src="<?php echo base_url(isset($product['images'][1]) ? $product['images'][1]['url'] : $product['images'][0]['url']); ?>" alt="img" class="img-responsive secondaryImage">
-
-                                                    <?php } else { ?>
-                                                        <img src="<?php echo base_url(); ?>uploads/default.png" alt="img" class="img-responsive primaryImage">
-                                                        <img src="<?php echo base_url(); ?>uploads/default1.png" alt="img" class="img-responsive secondaryImage">
-                                                    <?php } ?>
-                                                </a>
-                                                <?php if ($product['discount'] > 0) { ?>
-                                                    <div class="promotion">
-                                                        <span class="discount"><?php echo $product['discount']; ?> % OFF</span>
-                                                    </div>
-
-                                                <?php } ?>
-                                            </div>
-											<div class="description">
-												<h4>
-													<a href="<?php echo $product['url']; ?>">
-														<?php __e((!empty($product['name']) ? $product['name'] : '')); ?><br>
-														<?php __e($product['sku']); ?>
-													</a>
-												</h4>
-											</div>
-                                            <div class="price">
-                                                <div class="row">
-                                                    <div class="col-lg-7 col-md-6 col-sm-8 col-xs-8">
-                                                        <?php if ($product['discount'] > 0) : ?>
-                                                            <span style="color:#FA7163;font-weight: bold;">৳ <?php __e(makeCurrency(!empty($product['price']) ? makeCurrency($product['price'] - ($product['price'] * $product['discount']) / 100) : '')); ?></span><br/>
-                                                            <del><span style="color:#D2CCDE;font-weight: bold;">৳ <?php __e(makeCurrency($product['price'])); ?></span></del><br/>
-
-                                                        <?php else: ?>
-                                                            <span style="color:#FA7163;font-weight: bold;">৳ <?php __e(makeCurrency($product['price'])); ?></span>
-                                                        <?php endif; ?>
-                                                    </div>
-                                                    <div class="col-lg-5 col-md-6 col-sm-4 col-xs-4">
-                                                        <a href="<?php echo base_url('add_to_cart?id=' . $product['id']); ?>" class="btn btn-primary add_to_cart" data-id="<?php echo $product['id']; ?>">
-                                                            <span class="add2cart">
-                                                                <i class="glyphicon glyphicon-shopping-cart"> </i> Buy 
-                                                            </span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-                            </div>
-                            <div class="clearfix" style="margin: 40px 0 0 0;"></div>
-                
-                
-                
-                
-                <?php $products = $temp; ?>
-                
-                
-                
-                <h3>Latest Products</h3>
-                <div class="row xsResponse">
-                    <?php
-                    foreach ($products as $product) {
-                        $product['images'] = $this->product_model->get_product_imgs($product['id']);
-                        $product['url'] = base_url('product/' . $product['id'] . '-' . url_title($product['name'], '-', TRUE));
-                        ?>
-                        <div class="item itemauto  col-lg-3 col-md-3 col-sm-6 col-xs-6">
-                            <div class="product">
-                                <div class="imageHover">
-                                    <a href="<?php echo $product['url']; ?>">
-                                        <?php if (!empty($product['images'])) { ?>
-                                            <img src="<?php echo base_url($product['images'][0]['url']); ?>" alt="img" class="img-responsive primaryImage">
-                                            <img src="<?php echo base_url(isset($product['images'][1]) ? $product['images'][1]['url'] : $product['images'][0]['url']); ?>" alt="img" class="img-responsive secondaryImage">
-
-                                        <?php } else { ?>
-                                            <img src="<?php echo base_url(); ?>uploads/default.png" alt="img" class="img-responsive primaryImage">
-                                            <img src="<?php echo base_url(); ?>uploads/default1.png" alt="img" class="img-responsive secondaryImage">
-                                        <?php } ?>
-                                    </a>
-                                    <?php if ($product['discount'] > 0) { ?>
-                                        <div class="promotion">
-                                            <span class="discount"><?php echo $product['discount']; ?> % OFF</span>
-                                        </div>
-
-                                    <?php } ?>
-                                </div>
-								<div class="description">
-                                <h4>
-                                    <a href="<?php echo $product['url']; ?>">
-                                        <?php __e((!empty($product['name']) ? $product['name'] : '')); ?><br>
-                                                    <?php __e($product['sku']); ?>
-                                    </a>
-                                </h4>
-								</div>
-                                <div class="price">
-                                    <div class="row">
-                                        <div class="col-lg-7 col-md-6 col-sm-8 col-xs-8">
-                                            <?php if ($product['discount'] > 0) : ?>
-                                                <span style="color:#FA7163;font-weight: bold;">৳ <?php __e(makeCurrency(!empty($product['price']) ? makeCurrency($product['price'] - ($product['price'] * $product['discount']) / 100) : '')); ?></span><br/>
-                                                <del><span style="color:#D2CCDE;font-weight: bold;">৳ <?php __e(makeCurrency($product['price'])); ?></span></del><br/>
-
-                                            <?php else: ?>
-                                                <span style="color:#FA7163;font-weight: bold;">৳ <?php __e(makeCurrency($product['price'])); ?></span>
-                                            <?php endif; ?>
-                                        </div>
-                                        <div class="col-lg-5 col-md-6 col-sm-4 col-xs-4">
-                                            <a href="<?php echo base_url('add_to_cart?id=' . $product['id']); ?>" class="btn btn-primary add_to_cart" data-id="<?php echo $product['id']; ?>">
-                                                <span class="add2cart">
-                                                    <i class="glyphicon glyphicon-shopping-cart"> </i> Buy 
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <?php } ?>
-                </div>
-                <div class="clearfix" style="margin: 40px 0 0 0;"></div>
-
-              
-
-
-
-
-                            <div class="width100 section-block">
-                                <h3>WHY CHOOSE OUR PRODUCTS</h3>
-
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <ul class="no-margin brand-carousel owl-carousel owl-theme">
-                                            <?php __block($block16); ?>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="clearfix" style="margin: 40px 0 0 0;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div id="nav-buttons">
+	<div id="button-next">&nbsp;</div>
+	<div id="button-prev">&nbsp;</div>
+</div>
+<div id="menu-logo">
+	<a rel="home" title="Styletex Asia" href="#" class="home-logo">
+		<img alt="tyletex" src="<?php echo base_url(); ?>frontassets/images/logo.png">
+	</a>
+	<nav class="menu-home_menu-container" id="newNav">
+		<ul class="menu" id="menu-home_menu">
+			<li class="menu-item-52 first">
+				<a class="loaded" href="#" rel="#">
+					<span>branding style with texture</span>						
+				</a>
+			</li>
+			<li class="has-focus-image has-left-image" id="menu-item-51">
+				<a class="loaded" href="#" rel="for-production">
+					<span>production</span>
+				</a>
+			</li>
+			<li class="has-focus-image has-left-image menu-item-89" ><a class="loaded" href="#" rel="passion-for-product"><span>product</span></a>
+				<ul class="sub-menu">
+					<li class="has-focus-image has-left-image"><a class="loaded" href="" rel="T-Shirt">T-Shirt</a></li>
+					<li class="has-focus-image has-left-image"><a class="loaded" href="" rel="Polo-Shirt">Polo-Shirt</a></li>
+					<li class="has-focus-image has-left-image"><a class="loaded" href="" rel="Hoodie">Hoodie</a></li>
+					<li class="has-focus-image has-left-image"><a class="loaded" href="#" rel="Sweat-Shirt">Sweat Shirt</a></li>
+					<li class="has-focus-image has-left-image"><a class="loaded" href="#" rel="Tank-Top">Tank Top</a></li>
+					<li class="has-focus-image has-left-image"><a class="loaded" href="#" rel="Jacket">Jacket</a></li>
+					<li class="has-focus-image has-left-image"><a class="loaded" href="#" rel="Denim">Denim</a></li>
+					<li class="has-focus-image has-left-image"><a class="loaded" href="#" rel="Men’s-Shorts">Men’s Shorts</a></li>
+				</ul>
+			</li>
+			<li class="has-focus-image has-left-image"><a class="loaded" href="#" rel="Our-Team"><span>Our Team</span></a></li>
+			<li class="has-focus-image has-left-image"><a class="loaded" href="#"><span>Blog</span></a></li>
+			<li class="has-focus-image has-left-image"><a class="loaded" href="#" rel="Company-Profile"><span>Company Profile</span></a></li>
+			<li class="has-focus-image has-left-image"><a class="loaded" href="#" rel="passion-for-professionalism"><span>professionalism</span></a></li>
+			<li class="has-focus-image has-left-image"><a class="loaded" href="#" rel="for-pricing"><span>pricing</span></a></li>
+			<li class="menu-item menu-item-type-post_type menu-item-object-page main_cat has-focus-image has-left-image" id="menu-item-45"><span>about</span>
+				<ul class="sub-menu">
+					<li class="has-focus-image has-left-image"><a class="loaded" href="#" rel="vision">vision</a></li>
+					<li class="has-focus-image has-left-image"><a class="loaded" href="#" rel="styletex-facts">Styletex facts</a></li>
+					<li class="has-focus-image has-left-image"><a class="loaded" href="#" rel="founders-story">founder’s story</a></li>
+				</ul>
+			</li>
+			<li class="main_cat has-focus-image has-left-image" id="menu-item-44">
+				<a class="loaded" href="#" rel="connect"><span>connect</span></a></li>
+		</ul>
+	</nav>
+</div>
+<div id="social">
+	<div id="facebook"><a href="http://www.facebook.com" target="_blank">&nbsp;</a></div>
+	<div id="twitter"><a href="http://www.twitter.com" target="_blank">&nbsp;</a></div>
+</div>
+<div id="container">
+	<div class="column beauty">
+		<div class="cache">&nbsp;</div>
+		<div class="slider-0">
+			<div class="mask"><img src="<?php echo base_url(); ?>frontassets/images/1.jpg"></div>
+		</div>
+	</div>
+	<div class="column-focus fashion">
+		<div class="slider-1">
+			<div class="mask"><img src="<?php echo base_url(); ?>frontassets/images/2.jpg"></div>
+		</div>
+	</div>
+	<div class="column event">
+		<div class="cache">&nbsp;</div>
+		<div class="slider-2">
+			<div class="mask"><img src="<?php echo base_url(); ?>frontassets/images/3.jpg"></div>
+		</div>
+	</div>
+	<div class="column location">
+		<div class="cache">&nbsp;</div>
+		<div class="slider-3">
+			<div class="mask">
+				<img src="<?php echo base_url(); ?>frontassets/images/2.jpg">
+				<img src="<?php echo base_url(); ?>frontassets/images/3.jpg">
+				<img src="<?php echo base_url(); ?>frontassets/images/4.jpg">
+			</div>
+		</div>
+	</div>
+</div>
+<div id="page-slider" style="left: -56%;">
+	<div class="column">
+		<div class="cache">&nbsp;</div>
+		<div class="page-slider-item page-slider-production" style="opacity: 1;">
+			<div class="mask">
+				<img src="<?php echo base_url(); ?>frontassets/images/1.jpg">
+			</div>
+		</div>
+		<div class="page-slider-item page-slider-product" style="opacity: 1;">
+			<div class="mask">
+				<img src="<?php echo base_url(); ?>frontassets/images/2.jpg">
+			</div>
+		</div>
+		<div class="page-slider-item page-slider-passion-for-professionalism" style="opacity: 1;">
+			<div class="mask">
+				<img src="<?php echo base_url(); ?>frontassets/images/4.jpg">
+			</div>
+		</div>
+		<div class="page-slider-item page-slider-vision" style="opacity: 1;">
+			<div class="mask">
+				<img src="<?php echo base_url(); ?>frontassets/images/5.jpg">
+			</div>
+		</div>
+	</div>
+	<div class="column-focus">
+		<div class="page-slider-item page-slider-vision" style="opacity: 1;">
+			<div class="mask">
+				<img src="<?php echo base_url(); ?>frontassets/images/1.jpg">
+			</div>
+		</div>
+		<div class="page-slider-item page-slider-vision" style="opacity: 1;">
+			<div class="mask">
+				<img src="<?php echo base_url(); ?>frontassets/images/5.jpg">
+			</div>
+		</div>
+		<div class="page-slider-item page-slider-vision" style="opacity: 1;">
+			<div class="mask">
+				<img src="<?php echo base_url(); ?>frontassets/images/3.jpg">
+			</div>
+		</div>
+		<div class="page-slider-item page-slider-vision" style="opacity: 1;">
+			<div class="mask">
+				<img src="<?php echo base_url(); ?>frontassets/images/6.jpg">
+			</div>
+		</div>
+	</div>
+</div>
+        

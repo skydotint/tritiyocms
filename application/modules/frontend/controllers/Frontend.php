@@ -40,24 +40,7 @@ class Frontend extends MX_Controller {
         $this->data['cart']['total'] = array_sum(array_column($this->data['cart']['items'], 'subtotal'));
 
         $this->data['compare_products'] = (array) $this->session->userdata('compared_list');
-    }
-
-    public function update_cart() {
-        /*
-         * Cart update function works here
-         */
-        $data = array();
-
-        foreach ($this->input->post('rowid') as $rowid) {
-            $qty = $this->input->post("qty_of_{$rowid}");
-            $data[] = [
-                'qty' => abs($qty? : 0),
-                'rowid' => $rowid
-            ];
-        }
-        $this->cart->update($data);
-        redirect('cart', 'refresh');
-    }
+    }    
 
     /**
      * Sending Data to settings page
@@ -70,9 +53,9 @@ class Frontend extends MX_Controller {
 
 
         $this->data['is_home'] = true;
-        $this->load->view('common/header', $this->data);
+        $this->load->view('header', $this->data);
         $this->load->view('index', $this->data);
-        $this->load->view('common/footer', $this->data);
+        $this->load->view('footer', $this->data);
     }
 
     public function page() {
@@ -86,9 +69,9 @@ class Frontend extends MX_Controller {
                 $this->data['single_page'] = $single_page;
             }
             $this->data['title'] = (!empty($single_page->PageTitle) ? $single_page->PageTitle : '');
-            $this->load->view('common/header', $this->data);
+            $this->load->view('header', $this->data);
             $this->load->view('page', $this->data);
-            $this->load->view('common/footer', $this->data);
+            $this->load->view('footer', $this->data);
         } else {
             redirect(base_url(), 'refresh');
         }
@@ -100,9 +83,9 @@ class Frontend extends MX_Controller {
             $this->data['single_post'] = $this->post_single($pageroute);
 //owndebugger($this->data['single_post']);
             $this->data['title'] = (!empty($single_page->Title) ? $single_page->Title : '');
-            $this->load->view('common/header', $this->data);
+            $this->load->view('header', $this->data);
             $this->load->view('single', $this->data);
-            $this->load->view('common/footer', $this->data);
+            $this->load->view('footer', $this->data);
         } else {
             redirect(base_url(), 'refresh');
         }
@@ -134,9 +117,9 @@ class Frontend extends MX_Controller {
 
             $this->data['title'] = (!empty($this->data['term']['name']) ? $this->data['term']['name'] : '');
 
-            $this->load->view('common/header', $this->data);
+            $this->load->view('header', $this->data);
             $this->load->view('shop/product_list', $this->data);
-            $this->load->view('common/footer', $this->data);
+            $this->load->view('footer', $this->data);
         } else {
             redirect(base_url(), 'refresh');
         }
@@ -166,9 +149,9 @@ class Frontend extends MX_Controller {
             array('url' => 'search?search_key=' . urldecode($options['search_key']), 'title' => 'Search')
         );
 
-        $this->load->view('common/header', $this->data);
+        $this->load->view('header', $this->data);
         $this->load->view('shop/product_list', $this->data);
-        $this->load->view('common/footer', $this->data);
+        $this->load->view('footer', $this->data);
     }
 
     public function single_product($product_id = 0) {
@@ -194,9 +177,9 @@ class Frontend extends MX_Controller {
              */
             $this->data['title'] = (!empty($this->data['product']['name']) ? $this->data['product']['name'] : '');
 
-            $this->load->view('common/header', $this->data);
+            $this->load->view('header', $this->data);
             $this->load->view('shop/single_product', $this->data);
-            $this->load->view('common/footer', $this->data);
+            $this->load->view('footer', $this->data);
         } else {
             redirect(base_url(), 'refresh');
         }
@@ -306,9 +289,9 @@ class Frontend extends MX_Controller {
 
     public function view_cart() {
         $this->data['title'] = 'Cart';
-        $this->load->view('common/header', $this->data);
+        $this->load->view('header', $this->data);
         $this->load->view('shop/cart', $this->data);
-        $this->load->view('common/footer', $this->data);
+        $this->load->view('footer', $this->data);
     }
 
     public function checkout($step = 0) {
@@ -331,9 +314,9 @@ class Frontend extends MX_Controller {
             array('url' => 'checkout', 'title' => 'Signup')
         );
 
-        $this->load->view('common/header', $this->data);
+        $this->load->view('header', $this->data);
         $this->load->view('shop/signup', $this->data);
-        $this->load->view('common/footer', $this->data);
+        $this->load->view('footer', $this->data);
     }
 
     private function _checkout_step_2() {
@@ -363,9 +346,9 @@ class Frontend extends MX_Controller {
             array('url' => 'checkout/2', 'title' => 'Shiping Address')
         );
 
-        $this->load->view('common/header', $this->data);
+        $this->load->view('header', $this->data);
         $this->load->view('shop/checkout/step2', $this->data);
-        $this->load->view('common/footer', $this->data);
+        $this->load->view('footer', $this->data);
     }
 
     private function _checkout_step_3() {
@@ -377,9 +360,9 @@ class Frontend extends MX_Controller {
             array('url' => 'checkout/3', 'title' => 'Payment Information')
         );
 
-        $this->load->view('common/header', $this->data);
+        $this->load->view('header', $this->data);
         $this->load->view('shop/checkout/step3', $this->data);
-        $this->load->view('common/footer', $this->data);
+        $this->load->view('footer', $this->data);
     }
 
     private function _checkout_step_4() {
@@ -393,9 +376,9 @@ class Frontend extends MX_Controller {
             array('url' => 'checkout/4', 'title' => 'Order Confirmation')
         );
 
-        $this->load->view('common/header', $this->data);
+        $this->load->view('header', $this->data);
         $this->load->view('shop/checkout/step4', $this->data);
-        $this->load->view('common/footer', $this->data);
+        $this->load->view('footer', $this->data);
     }
 
     public function update_shiping_address() {
@@ -421,6 +404,23 @@ class Frontend extends MX_Controller {
         } else {
             redirect('checkout/2', 'refresh');
         }
+    }
+	
+	public function update_cart() {
+        /*
+         * Cart update function works here
+         */
+        $data = array();
+
+        foreach ($this->input->post('rowid') as $rowid) {
+            $qty = $this->input->post("qty_of_{$rowid}");
+            $data[] = [
+                'qty' => abs($qty? : 0),
+                'rowid' => $rowid
+            ];
+        }
+        $this->cart->update($data);
+        redirect('cart', 'refresh');
     }
 
     public function update_payment_info() {
@@ -588,9 +588,9 @@ class Frontend extends MX_Controller {
         );
         $this->data['orders'] = $this->order_model->get_orders(['user_id' => $this->data['userInformation']->id]);
 
-        $this->load->view('common/header', $this->data);
+        $this->load->view('header', $this->data);
         $this->load->view('userpanel/userdashboard', $this->data);
-        $this->load->view('common/footer', $this->data);
+        $this->load->view('footer', $this->data);
     }
 
     /** My Pesonal Information */
@@ -622,9 +622,9 @@ class Frontend extends MX_Controller {
             }
         }
         // $this->data['userInformation'];
-        $this->load->view('common/header', $this->data);
+        $this->load->view('header', $this->data);
         $this->load->view('userpanel/personal_information', $this->data);
-        $this->load->view('common/footer', $this->data);
+        $this->load->view('footer', $this->data);
     }
 
     public function showrooms() {
@@ -636,7 +636,7 @@ class Frontend extends MX_Controller {
         $this->data['showrooms'] = $this->showrooms_model->get_showrooms();
 
         return $this->load->view('shop/showrooms', $this->data, true);
-        // $this->load->view('common/footer', $this->data);
+        // $this->load->view('footer', $this->data);
     }
 
     public function get_showrooms() {
@@ -971,9 +971,9 @@ class Frontend extends MX_Controller {
             $this->data['products'][] = $this->product_model->get_product($product_id);
         }
 
-        $this->load->view('common/header', $this->data);
+        $this->load->view('header', $this->data);
         $this->load->view('shop/compare_products', $this->data);
-        $this->load->view('common/footer', $this->data);
+        $this->load->view('footer', $this->data);
     }
 
     public function download_pdf($order_id = 66, $secret_key = '1764ac8cefca9f1473f6d9d8d79ab72ab16375bb') {
