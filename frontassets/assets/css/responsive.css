@@ -1,0 +1,25 @@
+@media only screen and (max-width: 768px) {
+    #header  {width: 100%;}
+    .slider_right img{}
+    .imageHover { max-height: 265px;}	
+    .logo{width:100%;float:left;text-align:center;}
+    .search_box{text-align:center;}
+    .navbar-form .input-group > .form-control {width: 254px !important;}
+    .hotline {text-align:center !important;}
+    .s_icon ul {width: 55%;}
+    .megamenu-content{padding:20px;max-height:200px;overflow:auto;}
+    .megamenu-content ul li {padding-left: 20px; border-color: white !important;}
+    .megamenu-content ul li a{color:#333 !important;}
+    .Sign{width:100%;text-align:right;}
+    .Sign ul {margin-left:0 auto !important;}
+    .userMenu {width: 59% !important;}
+}
+@media only screen and (max-width: 360px) {
+    .logo{width:100%;float:left;text-align:center;}
+    .navbar-form .input-group > .form-control { width: 416px !important;}
+    .search_box{text-align:center;}
+
+    .hotline { text-align:center !important;}
+    .s_icon ul { width: 61%;}
+    .userMenu { width: 70% !important;}
+}
