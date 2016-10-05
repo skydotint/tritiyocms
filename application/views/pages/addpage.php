@@ -31,6 +31,40 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="col-md-1">Left Side Image</label>
+
+            <div class="col-md-11">
+                <?php
+                $data = array(
+                    'name' => 'left_image',
+                    'id' => 'left_image',
+                    'class' => 'form-control',
+                    'data-minlength' => '2',                    
+                    'value' => (isset($pageinformation->LeftImage) ? $pageinformation->LeftImage : '')
+                );
+
+                echo form_input($data);
+                ?>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-1">Focus Image</label>
+
+            <div class="col-md-11">
+                <?php
+                $data = array(
+                    'name' => 'focus_image',
+                    'id' => 'focus_image',
+                    'class' => 'form-control',
+                    'data-minlength' => '2',                    
+                    'value' => (isset($pageinformation->FocusImage) ? $pageinformation->FocusImage : '')
+                );
+
+                echo form_input($data);
+                ?>
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-md-1">Page Route</label>
 
             <div class="col-md-6">

@@ -308,3 +308,6 @@ $route['delete_showroom'] = 'showrooms/delete';
 $route['order/(:any)/list'] = 'order/order_list/$1';
 $route['order/move_to_(:any)/(:num)']=  'order/move_to/$2/$1';
 
+
+/** Json Page **/
+$route['jsonpage/(:num)/(:any)'] = 'frontend/jsonpage';

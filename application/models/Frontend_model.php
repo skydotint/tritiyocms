@@ -101,7 +101,7 @@ class Frontend_model extends Common_model {
     public function getPageByRoute($route) {
         return $this->db->select('*')
                         ->from($this->_webpages)
-                        ->where('PageRoute', $route)
+                        ->where('PageId', $route)
                         ->get()
                         ->result();
     }

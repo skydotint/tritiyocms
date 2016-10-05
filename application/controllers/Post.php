@@ -144,7 +144,7 @@ class Post extends MY_Controller {
         $this->data['userinformation'] = $this->basic_information_of_mine($this->data['userid']);
         $this->data['personalinformation'] = $this->personal_information_of_mine($this->data['userid']);
         $this->data['postcategory'] = $this->common_model->get_settings(9);
-        $this->term_model->get_category();
+        //$this->term_model->get_category();
         $uri1 = $this->uri->segment(1);
         $uri2 = $this->uri->segment(2);
         $newsid = $this->input->post('news_id');

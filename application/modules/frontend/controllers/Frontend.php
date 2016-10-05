@@ -35,7 +35,7 @@ class Frontend extends MX_Controller {
             $this->data['block' . $i] = $this->search($this->data['blocks'], 'WidgetPosition', $i);
         }
         $this->data['pages'] = $this->get_webpages();
-        $this->data['mainmenu'] = $this->get_menu_directly_from_db();
+        $this->data['mainmenu'] = $this->get_menu_directly_from_db();        
         $this->data['cart']['items'] = $this->cart->contents();
         $this->data['cart']['total'] = array_sum(array_column($this->data['cart']['items'], 'subtotal'));
 
@@ -49,15 +49,40 @@ class Frontend extends MX_Controller {
         $this->data['slider'] = $this->get_posts_by_category(46, 5);
         $this->data['products'] = $this->product_model->get_products(array('limit' => 4, 'order_field' => 'id', 'order_type' => 'desc'));
 
-        $this->data['stricky_products'] = $this->product_model->get_stricky_product(4);
-
+        $this->data['stricky_products'] = $this->product_model->get_stricky_product(4);        
 
         $this->data['is_home'] = true;
         $this->load->view('header', $this->data);
         $this->load->view('index', $this->data);
         $this->load->view('footer', $this->data);
     }
-
+    public function jsonpage() {
+        $uri2 = $this->uri->segment(2);
+        $uri3 = $this->uri->segment(3);
+        
+        $content = array();        
+        
+        $single_page = $this->page_single($uri2);
+        
+        if ($single_page->isSpecial == 1) {
+            $str = $single_page->Description;
+            $this->data['special_single_page'] = $this->shortcodes->parse($str);
+        } else {
+            $this->data['single_page'] = $single_page;
+        }
+        
+        $this->data['title'] = (!empty($single_page->PageTitle) ? $single_page->PageTitle : '');
+        $this->data['content'] = (!empty($single_page->Description) ? $single_page->Description : '');
+        
+        $focusimage = '<img src="'. (!empty($single_page->FocusImage) ? $single_page->FocusImage : base_url() . 'frontassets/images/3.jpg') .'" />';
+        $leftimage = '<img src="'. (!empty($single_page->LeftImage) ? $single_page->LeftImage : base_url() . 'frontassets/images/5.jpg') .'" />';
+        $content = array(
+            "focus_image" => $focusimage,
+            "left_image" => $leftimage,
+            "html" => '<h3 class="entry-title">'. $this->data['title'] .'</h3><div class="entry-content for_cont_scroll"><div class="quatetion">'. $this->data['content'] .'</div></div>'
+        );
+        echo jsonEncode($content);
+    }
     public function page() {
         if (!empty($this->uri->segment(1))) {
             $pageroute = $this->uri->segment(2);
@@ -780,15 +805,15 @@ class Frontend extends MX_Controller {
     public function get_menu_directly_from_db() {
         $menus = $this->frontend_model->getMainMenuFromDbDirectly();
         if (!empty($menus)) {
-            $html = '<ul class="nav navbar-nav">';
+            $html = '<ul class="menu" id="menu-home_menu">';
             foreach ((array) $menus as $menu) {
                 if ($menu->isMegaMenu == 1) {
-                    $html .= '<li class="dropdown megamenu-80width ' . (($this->uri->segment(1) == 'category') ? ' active' : '') . '">';
-                    $html .= '<a data-toggle="dropdown" class="dropdown-toggle" href="#">';
+                    $html .= '<li class="has-focus-image has-left-image menu-item-89 ' . (($this->uri->segment(1) == 'category') ? ' active' : '') . '">';
+                    $html .= '<a class="loaded" href="#" rel="#">';
                     $html .= $menu->PageTitle;
                     $html .= '<b class="caret"></b></a>';
-                    $html .= '<ul class="dropdown-menu">';
-                    $html .= '<li class="megamenu-content">';
+                    $html .= '<ul class="sub-menu">';
+                    $html .= '<li class="has-focus-image has-left-image">';
                     $html .= $menu->Description;
                     $html .= '</li>';
                     $html .= '</ul>';
@@ -796,18 +821,18 @@ class Frontend extends MX_Controller {
                 }
 
                 if (!empty($menu->Childs)) {
-                    $html .= '<li class="dropdown "><a href="' . base_url() . 'page/' . $menu->PageRoute . '" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' . $menu->PageTitle . ' <span class="caret"></span></a>';
+                    $html .= '<li class="has-focus-image has-left-image menu-item-89"><a rel="" class="loaded" href="' . base_url() . 'page/' . $menu->PageRoute . '" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' . $menu->PageTitle . ' <span class="caret"></span></a>';
                 } else {
                     if ($menu->isMegaMenu == 0) {
-                        $html .= '<li class="' . (($this->uri->segment(1) == 'page') && ($this->uri->segment(2) == $menu->PageRoute) ? ' active' : '') . '"><a href="' . base_url() . 'page/' . $menu->PageRoute . '">' . $menu->PageTitle . '</a></li>';
+                        $html .= '<li id="menu-item-51" class="menu-item-52 first ' . (($this->uri->segment(1) == 'page') && ($this->uri->segment(2) == $menu->PageRoute) ? ' active' : '') . '"><a rel="" class="loaded" href="' . base_url() . 'page/' . $menu->PageRoute . '">' . $menu->PageTitle . '</a></li>';
                     }
                 }
                 if (!empty($menu->Childs)) {
                     $childs = explode('|', $menu->Childs);
-                    $html .= '<ul class="dropdown-menu">';
+                    $html .= '<ul class="sub-menu">';
                     foreach ($childs as $child) {
                         $menu = explode(';', $child);
-                        $html .= '<li><a href="' . base_url() . 'page/' . trim($menu[1]) . '">' . $menu[2] . '</a></li>';
+                        $html .= '<li class="has-focus-image has-left-image"><a class="loaded" rel="T-Shirt" href="' . base_url() . 'page/' . trim($menu[1]) . '">' . $menu[2] . '</a></li>';
                     }
                     $html .= '</ul>';
                 }

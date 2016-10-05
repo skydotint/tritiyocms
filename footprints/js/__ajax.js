@@ -767,7 +767,7 @@ jQuery(document).ready(function ($) {
                     $('.showroomlist').append(showroom_view(showroom));
                 });
             }
-        })
+        });
     });
 });
 

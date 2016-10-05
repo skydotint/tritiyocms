@@ -24,6 +24,7 @@ class Pages extends MY_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model(array("product_model", "term_model", "common_model", "profile_model", "admin_model", 'media_model'));
         if (!$this->ion_auth->logged_in()) {
             redirect('outlet', 'refresh');
         }
@@ -55,9 +56,11 @@ class Pages extends MY_Controller
         //owndebugger($this->data['posts']);
         $this->data['pages'] = $this->default_getpage();
         $this->data['pages1'] = $this->default_getpage_yes(0, 'ASC');
-
+        $this->data['medias'] = $this->media_model->get_media('');
+        
         $this->load->view('layouts/header', $this->data);
         $this->load->view('pages/addpage', $this->data);
+        $this->load->view('media/media_list', $this->data);
         $this->load->view('layouts/footer', $this->data);
     }
 
@@ -69,7 +72,9 @@ class Pages extends MY_Controller
                 'PageTitle' => $this->input->post('page_title'),
                 'PageRoute' => $this->input->post('page_route'),
                 'ParentId' => $this->input->post('parent_page'),
-                'PageOrder' => $this->input->post('page_order'),
+                'PageOrder' => $this->input->post('page_order'),                
+                'LeftImage' => $this->input->post('left_image'),
+                'FocusImage' => $this->input->post('focus_image'),
                 'Description' => $this->input->post('page_content'),
                 'isInMenu' => $this->input->post('is_in_menu'),
                 'isMegaMenu' => $this->input->post('is_mega_menu'),
@@ -85,6 +90,8 @@ class Pages extends MY_Controller
                 'PageRoute' => $this->input->post('page_route'),
                 'ParentId' => $this->input->post('parent_page'),
                 'PageOrder' => $this->input->post('page_order'),
+                'LeftImage' => $this->input->post('left_image'),
+                'FocusImage' => $this->input->post('focus_image'),
                 'Description' => $this->input->post('page_content'),
                 'PublishDate' => datetoint(date("Y-m-d h:s:i")),
                 'isInMenu' => $this->input->post('is_in_menu'),
