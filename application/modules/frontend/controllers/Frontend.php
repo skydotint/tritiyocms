@@ -79,8 +79,10 @@ class Frontend extends MX_Controller {
         $content = array(
             "focus_image" => $focusimage,
             "left_image" => $leftimage,
-            "html" => '<h3 class="entry-title">'. $this->data['title'] .'</h3><div class="entry-content for_cont_scroll"><div class="quatetion">'. $this->data['content'] .'</div></div>'
+            "html" => '<article class="" id="sports" style="opacity: 1;"><h3 class="entry-title">'. $this->data['title'] .'</h3>'. $this->data['content'] .'</article>'
         );
+        header("Access-Control-Allow-Origin: *");
+        header("Content-Type: text/javascript; charset=utf-8");
         echo jsonEncode($content);
     }
     public function page() {

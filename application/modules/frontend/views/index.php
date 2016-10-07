@@ -14,36 +14,36 @@
                 </a>
             </li>
             <li class="has-focus-image has-left-image" id="menu-item-51">
-                <a class="loaded" href="#" rel="for-production">
+                <a class="loaded" data-id="8" href="<?php echo base_url(); ?>jsonpage" rel="production">
                     <span>production</span>
                 </a>
             </li>
-            <li class="has-focus-image has-left-image menu-item-89" ><a class="loaded" href="#" rel="passion-for-product"><span>product</span></a>
+            <li class="has-focus-image has-left-image menu-item-89" ><a class="loaded" data-id="5" href="<?php echo base_url(); ?>jsonpage" rel="product"><span>product</span></a>
                 <ul class="sub-menu">
-                    <li class="has-focus-image has-left-image"><a class="loaded" href="" rel="T-Shirt">T-Shirt</a></li>
-                    <li class="has-focus-image has-left-image"><a class="loaded" href="" rel="Polo-Shirt">Polo-Shirt</a></li>
-                    <li class="has-focus-image has-left-image"><a class="loaded" href="" rel="Hoodie">Hoodie</a></li>
-                    <li class="has-focus-image has-left-image"><a class="loaded" href="#" rel="Sweat-Shirt">Sweat Shirt</a></li>
-                    <li class="has-focus-image has-left-image"><a class="loaded" href="#" rel="Tank-Top">Tank Top</a></li>
-                    <li class="has-focus-image has-left-image"><a class="loaded" href="#" rel="Jacket">Jacket</a></li>
-                    <li class="has-focus-image has-left-image"><a class="loaded" href="#" rel="Denim">Denim</a></li>
-                    <li class="has-focus-image has-left-image"><a class="loaded" href="#" rel="Men’s-Shorts">Men’s Shorts</a></li>
+                    <li class="has-focus-image has-left-image"><a class="loaded" data-id="16" href="<?php echo base_url(); ?>jsonpage" rel="t-shirt">T-Shirt</a></li>
+                    <li class="has-focus-image has-left-image"><a class="loaded" data-id="17" href="<?php echo base_url(); ?>jsonpage" rel="polo-shirt">Polo-Shirt</a></li>
+                    <li class="has-focus-image has-left-image"><a class="loaded" data-id="18" href="<?php echo base_url(); ?>jsonpage" rel="hoodie">Hoodie</a></li>
+                    <li class="has-focus-image has-left-image"><a class="loaded" data-id="19" href="<?php echo base_url(); ?>jsonpage" rel="sweat-shirt">Sweat Shirt</a></li>
+                    <li class="has-focus-image has-left-image"><a class="loaded" data-id="20" href="<?php echo base_url(); ?>jsonpage" rel="tank-top">Tank Top</a></li>
+                    <li class="has-focus-image has-left-image"><a class="loaded" data-id="21" href="<?php echo base_url(); ?>jsonpage" rel="jacket">Jacket</a></li>
+                    <li class="has-focus-image has-left-image"><a class="loaded" data-id="3" href="<?php echo base_url(); ?>jsonpage" rel="denim">Denim</a></li>
+                    <li class="has-focus-image has-left-image"><a class="loaded" data-id="22" href="<?php echo base_url(); ?>jsonpage" rel="mens-shirt">Men’s Shorts</a></li>
                 </ul>
             </li>
-            <li class="has-focus-image has-left-image"><a class="loaded" href="#" rel="Our-Team"><span>Our Team</span></a></li>
-            <li class="has-focus-image has-left-image"><a class="loaded" href="#"><span>Blog</span></a></li>
+            <li class="has-focus-image has-left-image"><a class="loaded" data-id="9" href="<?php echo base_url(); ?>jsonpage" rel="our-team"><span>Our Team</span></a></li>
+            <li class="has-focus-image has-left-image"><a class="loaded" data-id="3" href="<?php echo base_url(); ?>jsonpage" rel="vision"><span>Blog</span></a></li>
             <li class="has-focus-image has-left-image"><a class="loaded" data-id="4" href="<?php echo base_url(); ?>jsonpage" rel="company-profile"><span>Company Profile</span></a></li>
-            <li class="has-focus-image has-left-image"><a class="loaded" href="#" rel="passion-for-professionalism"><span>professionalism</span></a></li>
-            <li class="has-focus-image has-left-image"><a class="loaded" href="#" rel="for-pricing"><span>pricing</span></a></li>
+            <li class="has-focus-image has-left-image"><a class="loaded" data-id="11" href="<?php echo base_url(); ?>jsonpage" rel="professionalism"><span>professionalism</span></a></li>
+            <li class="has-focus-image has-left-image"><a class="loaded" data-id="3" href="<?php echo base_url(); ?>jsonpage" rel="vision"><span>pricing</span></a></li>
             <li class="menu-item menu-item-type-post_type menu-item-object-page main_cat has-focus-image has-left-image" id="menu-item-45"><span>about</span>
                 <ul class="sub-menu">
-                    <li class="has-focus-image has-left-image"><a class="loaded" data-id="3" href="<?php echo base_url(); ?>jsonpage" rel="vision">vision</a></li>
-                    <li class="has-focus-image has-left-image"><a class="loaded" href="#" rel="styletex-facts">Styletex facts</a></li>
-                    <li class="has-focus-image has-left-image"><a class="loaded" href="#" rel="founders-story">founder’s story</a></li>
+                    <li class="has-focus-image has-left-image"><a class="loaded" data-id="24" href="<?php echo base_url(); ?>jsonpage" rel="vision">vision</a></li>
+                    <li class="has-focus-image has-left-image"><a class="loaded" data-id="25" href="<?php echo base_url(); ?>jsonpage" rel="styletexfacts">Styletex facts</a></li>
+                    <li class="has-focus-image has-left-image"><a class="loaded" data-id="26" href="<?php echo base_url(); ?>jsonpage" rel="founder-story">Founder’s story</a></li>
                 </ul>
             </li>
             <li class="main_cat has-focus-image has-left-image" id="menu-item-44">
-                <a class="loaded" href="#" rel="connect"><span>connect</span></a></li>
+                <a class="loaded" data-id="15" href="<?php echo base_url(); ?>jsonpage" rel="connect"><span>connect</span></a></li>
         </ul>
     </nav>
 </div>

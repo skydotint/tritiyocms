@@ -12,8 +12,8 @@
             var baseurl = '<?php echo base_url(); ?>';
             var _config = {
                 "ajaxurl": "http:\/\/wp-admin\/admin-ajax.php",
-                "templateUrl": "http://localhost/style",
-                "siteUrl": "http://localhost/style",
+                "templateUrl": "<?php echo base_url(); ?>",
+                "siteUrl": "<?php echo base_url(); ?>",
                 "homeImages": ["frontassets/images/1.jpg",
                     "frontassets/images/2.jpg",
                     "frontassets/images/3.jpg",

@@ -1116,8 +1116,11 @@ jQuery(document).ready(function($) {
         var id = $(this).attr('data-id');
         $.ajax({
             url: baseurl + 'jsonpage/' + id + '/' + rel,
-            success: function (data) {                
-                $('#focus').html(data.html);
+            async:false,
+	    type: "POST",
+            dataType: "json",
+            success: function (data) {            	          
+                $('#focus').html(data.html).append('<div id="close-pop" style="background-position-x: 0px;">&nbsp;</div>');
                 $('#left_image').html(data.left_image);
                 $('#focus_image').html(data.focus_image);
             }
